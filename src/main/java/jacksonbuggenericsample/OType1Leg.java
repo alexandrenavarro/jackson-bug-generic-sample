@@ -1,10 +1,10 @@
 package jacksonbuggenericsample;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @ToString(callSuper = true)
 @Getter
@@ -13,19 +13,16 @@ import javax.validation.constraints.NotNull;
 public class OType1Leg<T extends OProduct> extends ORequestLeg {
 
     @JsonProperty("product")
-    @NotNull
-    @Valid
     private T product;
 
     public OType1Leg(){
-        super(1l);
+        super(ERequestType.TYPE_1_REQUEST, 0l);
     }
 
-    @Builder
     public OType1Leg(final Long id,
                      final T product
     ) {
-        super(id);
+        super(ERequestType.TYPE_1_REQUEST, id);
         this.product = product;
     }
 }

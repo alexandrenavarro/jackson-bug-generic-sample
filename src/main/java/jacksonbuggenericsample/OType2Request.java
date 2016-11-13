@@ -1,6 +1,5 @@
 package jacksonbuggenericsample;
 
-import lombok.Builder;
 import lombok.Singular;
 import lombok.ToString;
 
@@ -10,13 +9,13 @@ import java.util.List;
 public class OType2Request extends ORequest<OType2Leg> {
 
     public OType2Request() {
-        this.requestType = ERequestType.TYPE2;
+        this.requestType = ERequestType.TYPE_2_REQUEST;
     }
 
-    @Builder
+
     public OType2Request(final @Singular List<OType2Leg> legs) {
         super(
-                ERequestType.TYPE2,
+                ERequestType.TYPE_2_REQUEST,
                 legs);
     }
 }

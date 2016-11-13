@@ -10,7 +10,6 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
 public class OType2Product<P extends OProduct> {
 
     @JsonProperty("definition")

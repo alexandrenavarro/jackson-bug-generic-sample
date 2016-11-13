@@ -12,13 +12,12 @@ import java.util.List;
 public class OType1Request<P extends OProduct> extends ORequest<OType1Leg<P>> {
 
     public OType1Request() {
-        this.requestType = ERequestType.TYPE1;
+        this.requestType = ERequestType.TYPE_1_REQUEST;
     }
 
-    @Builder
     public OType1Request(final @Singular List<OType1Leg<P>> legs) {
         super(
-                ERequestType.TYPE1,
+                ERequestType.TYPE_1_REQUEST,
                 legs);
     }
 }

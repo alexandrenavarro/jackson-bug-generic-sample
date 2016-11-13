@@ -1,12 +1,12 @@
 package jacksonbuggenericsample;
 
 public enum ERequestType {
-    TYPE1,
-    TYPE2;
+    TYPE_1_REQUEST,
+    TYPE_2_REQUEST;
 
     public interface Constants {
-        String TYPE1 = "TYPE1";
-        String TYPE2 = "TYPE2";
+        String TYPE_1_REQUEST = "TYPE_1_REQUEST";
+        String TYPE_2_REQUEST = "TYPE_2_REQUEST";
     }
 
 }

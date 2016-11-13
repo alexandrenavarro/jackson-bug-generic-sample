@@ -3,22 +3,16 @@ package jacksonbuggenericsample;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = false)
-public class ORequestGenericWrapper extends JSonGCFields {
+public class ORequestGenericWrapper {
 
     @JsonProperty("request")
-    @NotNull
-    @Valid
-    private ORequest<? extends ORequestLeg> request;
-    //private ORequest request;
+    private ORequest<? extends ORequestLeg> request; // Serialization does not work
+    //private ORequest request; // Serialization works
 
 }

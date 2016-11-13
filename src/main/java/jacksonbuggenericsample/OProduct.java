@@ -1,6 +1,5 @@
 package jacksonbuggenericsample;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -22,26 +21,20 @@ import javax.validation.constraints.NotNull;
         visible = true
 )
 @JsonSubTypes({
-                      @JsonSubTypes.Type(value = OSubFamily11Product.class, name = ESubFamily.Constants.SUB_FAMILY11),
-                      @JsonSubTypes.Type(value = OSubFamily12Product.class, name = ESubFamily.Constants.SUB_FAMILY12),
-                      @JsonSubTypes.Type(value = OSubFamily21Product.class, name = ESubFamily.Constants.SUB_FAMILY21),
-                      @JsonSubTypes.Type(value = OUnknownProduct.class, name = ESubFamily.Constants.UNKNOWN),
+                      @JsonSubTypes.Type(value = OTypeAProduct.class, name = EProductType.Constants.TYPE_A_PRODUCT),
+                      @JsonSubTypes.Type(value = OTypeBProduct.class, name = EProductType.Constants.TYPE_B_PRODUCT),
               })
-public abstract class OProduct extends JSonGCFields {
+public abstract class OProduct  {
 
-    public static final String JSON_DISCRIMINATOR_FIELD = "subFamily";
+    public static final String JSON_DISCRIMINATOR_FIELD = "productType";
 
-    @JsonProperty("subFamily")
+    @JsonProperty("productType")
     @NotNull
-    protected final ESubFamily subFamily;
+    protected final EProductType productType;
 
-    @java.beans.ConstructorProperties({"subFamily"})
-    protected OProduct(final ESubFamily subFamily) {
-        this.subFamily = subFamily;
+    @java.beans.ConstructorProperties({"productType"})
+    protected OProduct(final EProductType productType) {
+        this.productType = productType;
     }
 
-    @JsonIgnore
-    public EFamily getFamily() {
-        return getSubFamily().getFamily();
-    }
 }

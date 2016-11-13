@@ -2,10 +2,10 @@ package jacksonbuggenericsample;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -14,29 +14,27 @@ import javax.validation.constraints.NotNull;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString(callSuper = false)
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY,
+        property = "requestLegType",
         visible = true
 )
-//@JsonTypeInfo(
-//        use = JsonTypeInfo.Id.NAME,
-//        include = JsonTypeInfo.As.EXISTING_PROPERTY,
-//        property = "requestType",
-//        visible = true
-//)
-//@JsonSubTypes({
-//                      @JsonSubTypes.Type(value = OOtcLeg.class, name = ERequestType.Constants.TYPE1),
-//                      @JsonSubTypes.Type(value = OListedLeg.class, name = ERequestType.Constants.TYPE2)
-//              })
-public abstract class ORequestLeg extends JSonGCFields {
+@JsonSubTypes({
+                      @JsonSubTypes.Type(value = OType1Leg.class, name = ERequestType.Constants.TYPE_1_REQUEST),
+                      @JsonSubTypes.Type(value = OType2Leg.class, name = ERequestType.Constants.TYPE_2_REQUEST)
+              })
+public abstract class ORequestLeg {
 
+
+    @JsonProperty("requestLegType")
+    @NotNull
+    protected final ERequestType requestLegType;
 
     @JsonProperty("id")
-    @NotNull
-    @Min(value = 1)
-    private Long id;
+    protected Long id;
 
 }

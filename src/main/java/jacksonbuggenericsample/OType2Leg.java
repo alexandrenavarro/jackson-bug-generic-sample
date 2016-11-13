@@ -1,25 +1,24 @@
 package jacksonbuggenericsample;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @ToString(callSuper = true)
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class OType2Leg<P extends OProduct> extends ORequestLeg {
+public class OType2Leg extends ORequestLeg {
 
-    @JsonProperty("product")
-    @NotNull
-    @Valid
-    private OType2Product<P> product;
 
-    @Builder
-    public OType2Leg(final Long id) {
-        super(id);
-        this.product = product;
+    public OType2Leg() {
+        super(ERequestType.TYPE_2_REQUEST, 0l);
     }
+
+    public OType2Leg(Long id) {
+        super(ERequestType.TYPE_2_REQUEST, id);
+    }
+
+
 }

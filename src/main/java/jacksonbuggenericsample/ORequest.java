@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -23,20 +20,15 @@ import java.util.List;
         visible = true
 )
 @JsonSubTypes({
-                      @JsonSubTypes.Type(value = OType1Request.class, name = ERequestType.Constants.TYPE1),
-                      @JsonSubTypes.Type(value = OType2Request.class, name = ERequestType.Constants.TYPE2)
+                      @JsonSubTypes.Type(value = OType1Request.class, name = ERequestType.Constants.TYPE_1_REQUEST),
+                      @JsonSubTypes.Type(value = OType2Request.class, name = ERequestType.Constants.TYPE_2_REQUEST)
               })
 public abstract class ORequest<T extends ORequestLeg> {
 
     @JsonProperty("requestType")
-    @NotNull
-    @Setter(AccessLevel.NONE)
     protected ERequestType requestType;
 
     @JsonProperty("legs")
-    @NotNull
-    @Size(min = 1)
-    @Valid
     private List<T> legs;
 
 }
