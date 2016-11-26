@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class OType2Leg extends ORequestLeg {
+public class OType2Leg<T extends OProduct> extends ORequestLeg<T> {
 
 
     public OType2Leg() {

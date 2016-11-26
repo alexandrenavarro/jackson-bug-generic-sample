@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class OType1Leg<T extends OProduct> extends ORequestLeg {
+public class OType1Leg<T extends OProduct> extends ORequestLeg<T> {
 
     @JsonProperty("product")
     private T product;

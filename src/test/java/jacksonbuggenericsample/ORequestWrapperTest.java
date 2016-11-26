@@ -17,10 +17,9 @@ public class ORequestWrapperTest {
     // Does work on jackson 2.6.7 but not anymore in jackson 2.7 or 2.8.4
     public void testORequestGenericWrapper() {
 
-        final ORequestGenericWrapper requestWrapper = new ORequestGenericWrapper(
-                new OType1Request<OTypeAProduct>(Collections.singletonList(new OType1Leg<OTypeAProduct>(1l, new OTypeAProduct()))));
-
-
+        final OType1Request<OTypeAProduct> oType2ProductOType1Request = new OType1Request<>(Collections.singletonList(new OType1Leg<OTypeAProduct>(1l, new OTypeAProduct())));
+        final ORequest<?, ?> oTypeAProductOType1Request2 = oType2ProductOType1Request;
+        final ORequestGenericWrapper requestWrapper = new ORequestGenericWrapper( (ORequest<OProduct, ORequestLeg<OProduct>>) oTypeAProductOType1Request2);
 
         try {
             final String
@@ -80,12 +79,14 @@ public class ORequestWrapperTest {
 
     @Test
     public void testORequest() {
-        final ORequest<? extends ORequestLeg> request =
-                new OType1Request<OTypeAProduct>(Collections.singletonList(new OType1Leg<OTypeAProduct>(1l, new OTypeAProduct())));
+        final OType1Request<OTypeAProduct> oType2ProductOType1Request = new OType1Request<>(Collections.singletonList(new OType1Leg<OTypeAProduct>(1l, new OTypeAProduct())));
+        final ORequest<?, ?> oTypeAProductOType1Request2 = oType2ProductOType1Request;
+
+
         try {
             final String
                     s =
-                    objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(request);
+                    objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(oTypeAProductOType1Request2);
             final ORequest destRequestWrapper = objectMapper.readValue(s, ORequest.class);
             Assertions.assertThat(((OType1Leg) (destRequestWrapper.getLegs().get(0))).getProduct().getProductType())
                     .isEqualTo(

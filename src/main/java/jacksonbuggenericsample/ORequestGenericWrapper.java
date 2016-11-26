@@ -12,7 +12,6 @@ import lombok.*;
 public class ORequestGenericWrapper {
 
     @JsonProperty("request")
-    private ORequest<? extends ORequestLeg> request; // Serialization does not work
-    //private ORequest request; // Serialization works
+    private ORequest<OProduct, ORequestLeg<OProduct>> request;
 
 }

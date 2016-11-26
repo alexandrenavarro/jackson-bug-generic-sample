@@ -9,7 +9,7 @@ import java.util.List;
 @Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class OType1Request<P extends OProduct> extends ORequest<OType1Leg<P>> {
+public class OType1Request<P extends OProduct> extends ORequest<P, OType1Leg<P>> {
 
     public OType1Request() {
         this.requestType = ERequestType.TYPE_1_REQUEST;

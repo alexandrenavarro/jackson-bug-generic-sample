@@ -23,12 +23,12 @@ import java.util.List;
                       @JsonSubTypes.Type(value = OType1Request.class, name = ERequestType.Constants.TYPE_1_REQUEST),
                       @JsonSubTypes.Type(value = OType2Request.class, name = ERequestType.Constants.TYPE_2_REQUEST)
               })
-public abstract class ORequest<T extends ORequestLeg> {
+public abstract class ORequest<P extends OProduct, L extends ORequestLeg<P>> {
 
     @JsonProperty("requestType")
     protected ERequestType requestType;
 
     @JsonProperty("legs")
-    private List<T> legs;
+    private List<L> legs;
 
 }

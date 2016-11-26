@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
                       @JsonSubTypes.Type(value = OType1Leg.class, name = ERequestType.Constants.TYPE_1_REQUEST),
                       @JsonSubTypes.Type(value = OType2Leg.class, name = ERequestType.Constants.TYPE_2_REQUEST)
               })
-public abstract class ORequestLeg {
+public abstract class ORequestLeg<P extends OProduct> {
 
 
     @JsonProperty("requestLegType")
