@@ -19,7 +19,7 @@ public class ORequestWrapperTest {
 
         final OType1Request<OTypeAProduct> oType2ProductOType1Request = new OType1Request<>(Collections.singletonList(new OType1Leg<OTypeAProduct>(1l, new OTypeAProduct())));
         final ORequest<?, ?> oTypeAProductOType1Request2 = oType2ProductOType1Request;
-        final ORequestGenericWrapper requestWrapper = new ORequestGenericWrapper( (ORequest<OProduct, ORequestLeg<OProduct>>) oTypeAProductOType1Request2);
+        final ORequestGenericWrapper requestWrapper = new ORequestGenericWrapper((ORequest<OProduct, ORequestLeg<OProduct>>) oTypeAProductOType1Request2);
 
         try {
             final String
@@ -97,4 +97,11 @@ public class ORequestWrapperTest {
             Assertions.fail("Fail", aE);
         }
     }
+
+    @Test
+    public void testORequestWithBuilder() {
+        final OType1Request<OTypeAProduct> oType2ProductOType1Request = new OType1Request<>(Collections.singletonList(OType1Leg.<OTypeAProduct>builder().product(new OTypeAProduct()).build()));
+
+    }
+
 }
